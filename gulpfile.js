@@ -10,7 +10,6 @@ var source = require('vinyl-source-stream');
 var buffer = require('vinyl-buffer');
 var reactify = require('reactify');
 var package = require('./package.json');
-var reload = browserSync.reload;
 
 /**
  * Running Bower

@@ -627,7 +627,7 @@ var PeopleStore = Fluxxor.createStore({
   getPersonById: function(id) {
     var len = _data.length;
     for (var i = 0; i < len; i++) {
-      if (_data[i].id === id) {
+      if (parseInt(_data[i].id)  === parseInt(id)) {
         return _data[i];
       }
     }

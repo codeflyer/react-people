@@ -10,7 +10,7 @@ npm install
 gulp serve
 ```
 
-###Release 1 (no-async)
+###Release 1 (first-try)
 In this version:
  * some simple route rith react-route
  * static loading of the data (made by a data.json require)

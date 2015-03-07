@@ -1,0 +1,44 @@
+{
+  "name": "react-people",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Davide Fiorello <davide@codeflyer.com> (http://github.com/codeflyer/)",
+  "license": "ISC",
+  "devDependencies": {
+    "bluebird": "^2.9.13",
+    "browser-sync": "^2.2.2",
+    "browserify": "^9.0.3",
+    "del": "^1.1.1",
+    "gulp": "^3.8.11",
+    "gulp-jscs": "^1.4.0",
+    "gulp-jshint": "^1.9.2",
+    "gulp-jsxcs": "^0.1.8",
+    "gulp-run": "^1.6.6",
+    "jscs": "^1.11.3",
+    "jsxcs": "^0.2.1",
+    "reactify": "^1.0.0",
+    "vinyl-buffer": "^1.0.0",
+    "vinyl-source-buffer": "0.0.2",
+    "vinyl-source-stream": "^1.1.0"
+  },
+  "paths": {
+    "less": "assets/less/*.less",
+    "js": "./app/**/*.js",
+    "app": "./app/app.js",
+    "html": "*.html"
+  },
+  "dest": {
+    "style": "style.css",
+    "app": "app.js",
+    "dist": "build"
+  },
+  "dependencies": {
+    "fluxxor": "^1.5.2",
+    "react": "^0.12.2",
+    "react-router": "^0.12.4"
+  }
+}

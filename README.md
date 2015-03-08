@@ -12,11 +12,14 @@ gulp serve
 
 ###Release 1 (first-try)
 In this version:
- * some simple route rith react-route
+ * some simple route with react-route
  * static loading of the data (made by a data.json require)
  * Event management with fluxxor
  * templating with react.js
 
+###Release 2 (async-storage)
+In this version:
+ * Added async load of data
 
 
 #Resources

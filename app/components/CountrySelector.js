@@ -32,13 +32,15 @@ var CountrySelector = React.createClass({
     Fluxxor.StoreWatchMixin('people'),
     State
   ],
-
   getStateFromFlux: function() {
     return {
       countries: this.getFlux().store('people').getCountries()
     };
   },
   render: function() {
+    if (this.state.countries == null) {
+      return <div>LOADING...</div>
+    }
     return (
         <ul className="list-group">
                 {this.state.countries.map(function(result) {

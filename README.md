@@ -18,3 +18,11 @@ In this version:
  * templating with react.js
 
 
+
+#Resources
+https://reactjsnews.com/the-state-of-flux/
+http://mjw56.github.io/handling-asynchronous-data-flow-in-flux/index.html
+https://github.com/facebook/react/wiki/Complementary-Tools
+
+###Routing
+https://github.com/swipely/aviator

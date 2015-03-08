@@ -1,21 +1,17 @@
 var Fluxxor = require('fluxxor');
 var actions = require('../actions');
-
-// build with https://www.mockaroo.com/
-var _data = require('../data/data.json');
-
+var CountryService = require('../services/CountryService');
+var PeopleService = require('../services/PeopleService');
 var NOT_FOUND_TOKEN = {};
 
+var _data = require('../data/data.json');
 var PeopleStore = Fluxxor.createStore({
   initialize: function() {
-    var tmpCountryList = _data.map(function(item) {
-      return item.country;
-    });
-    this.countries = tmpCountryList.filter(function(item, pos) {
-      return tmpCountryList.indexOf(item) === pos;
-    }).sort();
-
-    this.currentCountry = this.countries[0];
+    this.currentCountry = null;
+    this.currentPerson = null;
+    this.countries = null;
+    this.people = null;
+    this._initCountryList();
     this.bindActions(
         actions.constants.PEOPLE.CHANGE_COUNTRY, this.handleChangeCountry
     );
@@ -29,29 +25,57 @@ var PeopleStore = Fluxxor.createStore({
     return this.currentCountry;
   },
 
-  getPeopleByCountry: function(country) {
-    return _data.filter(function(item, pos) {
-      return item.country === country;
-    });
+  getCurrentPeopleList: function() {
+    return this.people;
   },
 
-  /**
-   * Don't try this at home!! :)
-   */
-  getPersonById: function(id) {
-    var len = _data.length;
-    for (var i = 0; i < len; i++) {
-      if (parseInt(_data[i].id)  === parseInt(id)) {
-        return _data[i];
-      }
-    }
-    return null;
+  getCurrentPerson: function() {
+    return this.currentPerson;
+  },
+
+  _changePerson: function(id) {
+    this.currentPerson = null;
+    var that = this;
+    PeopleService.loadPersonById(id).then(
+        function(person) {
+          that.currentPerson = person;
+          that.emit('change');
+        }
+    );
+  },
+
+  _changeCountry: function(country) {
+    this.currentCountry = country;
+    this.people = null;
+    var that = this;
+    PeopleService.loadPeopleList(country).then(
+        function(people) {
+          that.people = people;
+          that.emit('change');
+        }
+    );
+  },
+
+  _initCountryList: function() {
+    var that = this;
+    CountryService.getCountryList().then(
+        function(countries) {
+          that.countries = countries;
+          that._changeCountry(that.countries[0]);
+          that.emit('change');
+        }
+    );
   },
 
   handleChangeCountry: function(data) {
-    this.currentCountry = data.country;
+    this._changeCountry(data.country);
     this.flux.store('route').router.transitionTo('home', {}, {});
     this.emit('change');
+  },
+
+  handleChangePerson: function(idPerson) {
+    this._changePerson(idPerson);
+    //this.emit('change');
   }
 });
 

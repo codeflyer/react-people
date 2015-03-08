@@ -14,43 +14,40 @@ var Person = React.createClass({
     Fluxxor.StoreWatchMixin('people'),
     State
   ],
-
-  getStateFromFlux: function() {
+  componentWillMount : function() {
+    this.setState({
+      person: null
+    });
+    this.getFlux().store('people').currentPerson = null;
     var params = this.getParams();
+    this.getFlux().store('people').handleChangePerson(params.idPerson);
+  },
+  getStateFromFlux: function() {
     return {
-      person: this.getFlux().store('people').getPersonById(params.idPerson)
+      person: this.getFlux().store('people').getCurrentPerson()
     };
   },
   render: function() {
+    if (this.state.person == null) {
+      return <div>LOADING...</div>
+    }
     return (
-        <Container>
-          <Header current="home"></Header>
-          <div className="container">
-            <div className="row">
-              <div className="col-xs-3">
-                <CountrySelector></CountrySelector>
-              </div>
-              <div className="col-xs-9">
-                  <dl className="dl-horizontal">
-                    <dt>Id</dt>
-                    <dd>{this.state.person.id}</dd>
-                    <dt>Name</dt>
-                    <dd>{this.state.person.firstName}</dd>
-                    <dt>Surname</dt>
-                    <dd>{this.state.person.lastName}</dd>
-                    <dt>Gender</dt>
-                    <dd>{this.state.person.gender}</dd>
-                    <dt>Email</dt>
-                    <dd>{this.state.person.email}</dd>
-                    <dt>Country</dt>
-                    <dd>{this.state.person.country}</dd>
-                    <dt>SSN</dt>
-                    <dd>{this.state.person.ssn}</dd>
-                  </dl>
-              </div>
-            </div>
-          </div>
-        </Container>
+        <dl className="dl-horizontal">
+          <dt>Id</dt>
+          <dd>{this.state.person.id}</dd>
+          <dt>Name</dt>
+          <dd>{this.state.person.firstName}</dd>
+          <dt>Surname</dt>
+          <dd>{this.state.person.lastName}</dd>
+          <dt>Gender</dt>
+          <dd>{this.state.person.gender}</dd>
+          <dt>Email</dt>
+          <dd>{this.state.person.email}</dd>
+          <dt>Country</dt>
+          <dd>{this.state.person.country}</dd>
+          <dt>SSN</dt>
+          <dd>{this.state.person.ssn}</dd>
+        </dl>
     );
   }
 });

@@ -7,13 +7,13 @@ var EmptyView = require('./components/EmptyView');
 var Home = require('./components/Home');
 var About = require('./components/About');
 var Contact = require('./components/Contact');
-var Person = require('./components/Person');
+var PersonContainer = require('./components/PersonContainer');
 
 var routes = (
     <Route handler={EmptyView} name="home" path="/">
       <Route handler={About} name="about" path="/about" />
       <Route handler={Contact} name="contact" path="/contact" />
-      <Route handler={Person} name="person" path="person/:idPerson" />
+      <Route handler={PersonContainer} name="person" path="person/:idPerson" />
       <DefaultRoute handler={Home} />
     </Route>
 );

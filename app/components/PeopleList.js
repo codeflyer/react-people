@@ -37,13 +37,20 @@ var PeopleList = React.createClass({
     Fluxxor.StoreWatchMixin('people'),
     State
   ],
-
   getStateFromFlux: function() {
+    var currentCountry = this.getFlux().store('people').getCurrentCountry();
     return {
-      currentCountry: this.getFlux().store('people').getCurrentCountry()
+      currentCountry: currentCountry,
+      people: this.getFlux().store('people').getCurrentPeopleList()
     };
   },
   render: function() {
+    if (this.state.people == null) {
+      return <div>LOADING...</div>
+    }
+    if (this.state.people.length === 0) {
+      return <div>No people from {this.state.currentCountry}</div>
+    }
     return (
         <table className="table striped-table">
           <tr>
@@ -52,7 +59,7 @@ var PeopleList = React.createClass({
             <th>Surname</th>
           </tr>
           <tbody>
-          {this.getFlux().store('people').getPeopleByCountry(this.state.currentCountry).map(function(result) {
+          {this.state.people.map(function(result) {
             return <PeopleListItem key={'res-' + result.id} person={result}></PeopleListItem>;
           })}
           </tbody>

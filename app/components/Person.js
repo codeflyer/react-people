@@ -18,7 +18,6 @@ var Person = React.createClass({
     this.setState({
       person: null
     });
-    this.getFlux().store('people').currentPerson = null;
     var params = this.getParams();
     this.getFlux().store('people').handleChangePerson(params.idPerson);
   },

@@ -427,7 +427,6 @@ var Person = React.createClass({displayName: "Person",
     this.setState({
       person: null
     });
-    this.getFlux().store('people').currentPerson = null;
     var params = this.getParams();
     this.getFlux().store('people').handleChangePerson(params.idPerson);
   },
@@ -705,7 +704,6 @@ var CountryService = require('../services/CountryService');
 var PeopleService = require('../services/PeopleService');
 var NOT_FOUND_TOKEN = {};
 
-var _data = require('../data/data.json');
 var PeopleStore = Fluxxor.createStore({
   initialize: function() {
     this.currentCountry = null;
@@ -785,7 +783,7 @@ PeopleStore.NOT_FOUND_TOKEN = NOT_FOUND_TOKEN;
 module.exports = PeopleStore;
 
 
-},{"../actions":2,"../data/data.json":13,"../services/CountryService":15,"../services/PeopleService":16,"fluxxor":21}],18:[function(require,module,exports){
+},{"../actions":2,"../services/CountryService":15,"../services/PeopleService":16,"fluxxor":21}],18:[function(require,module,exports){
 var Fluxxor = require('fluxxor');
 var actions = require('../actions');
 

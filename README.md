@@ -26,6 +26,11 @@ In this version:
 https://reactjsnews.com/the-state-of-flux/
 http://mjw56.github.io/handling-asynchronous-data-flow-in-flux/index.html
 https://github.com/facebook/react/wiki/Complementary-Tools
+https://github.com/enaqx/awesome-react
 
 ###Routing
 https://github.com/swipely/aviator
+
+###Others
+https://github.com/facebook/immutable-js
+

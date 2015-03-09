@@ -4,7 +4,6 @@ var CountryService = require('../services/CountryService');
 var PeopleService = require('../services/PeopleService');
 var NOT_FOUND_TOKEN = {};
 
-var _data = require('../data/data.json');
 var PeopleStore = Fluxxor.createStore({
   initialize: function() {
     this.currentCountry = null;

@@ -3,11 +3,6 @@ var Router = require('react-router');
 var State = Router.State;
 var Fluxxor = require('fluxxor');
 
-// Components
-var Container = require('./Container');
-var Header = require('./Header');
-var CountrySelector = require('./CountrySelector');
-
 var Person = React.createClass({
   mixins: [
     Fluxxor.FluxMixin(React),

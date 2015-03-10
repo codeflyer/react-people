@@ -1,8 +1,9 @@
-var React = require('react');
 var Router = require('react-router');
+var Fluxxor = require('fluxxor');
+
+var React = require('react');
 var Link = Router.Link;
 var State = Router.State;
-var Fluxxor = require('fluxxor');
 
 var MenuItem = React.createClass({
   mixins: [
@@ -19,30 +20,28 @@ var MenuItem = React.createClass({
   }
 });
 
+var allowedRouteName = ['people', 'about', 'contact'];
 var Header = React.createClass({
   mixins: [
     Fluxxor.FluxMixin(React),
     State
   ],
-  propTypes: {
-    current: React.PropTypes.oneOf(['home', 'about', 'contact'])
-  },
-  getDefaultProps: function() {
-    return {
-      current: 'home'
-    };
-  },
   render: function() {
-    var divStyles = {
-      marginBottom: 50
-    };
+    var routes = this.getRoutes();
+    var len = routes.length;
+    var current = 'people';
+    for (var i = 0; i < len; i++) {
+      if (allowedRouteName.indexOf(routes[i].name) >= 0) {
+        current = routes[i].name;
+      }
+    }
     return (
         <div>
-          <div className="header" style={divStyles}>
+          <div className="header" style={{marginBottom: 50}}>
             <ul className="nav nav-pills pull-right">
-              <MenuItem name='Home' to='home' current={this.props.current}></MenuItem>
-              <MenuItem name='About' to='about' current={this.props.current}></MenuItem>
-              <MenuItem name='Contact' to='contact' current={this.props.current}></MenuItem>
+              <MenuItem name='People' to='people' current={current}></MenuItem>
+              <MenuItem name='About' to='about' current={current}></MenuItem>
+              <MenuItem name='Contact' to='contact' current={current}></MenuItem>
             </ul>
             <h3 className="text-muted">React People</h3>
           </div>

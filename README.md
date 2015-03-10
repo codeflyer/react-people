@@ -21,6 +21,10 @@ In this version:
 In this version:
  * Added async load of data
 
+###Release 3 (routing)
+In this version:
+ * Added a correct use of the router
+
 
 #Resources
 https://reactjsnews.com/the-state-of-flux/
@@ -33,4 +37,6 @@ https://github.com/swipely/aviator
 
 ###Others
 https://github.com/facebook/immutable-js
+https://github.com/ubolonton/js-csp
+https://github.com/sindresorhus/gulp-regenerator
 

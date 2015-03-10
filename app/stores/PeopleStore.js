@@ -68,7 +68,7 @@ var PeopleStore = Fluxxor.createStore({
 
   handleChangeCountry: function(data) {
     this._changeCountry(data.country);
-    this.flux.store('route').router.transitionTo('home', {}, {});
+    this.flux.store('route').router.transitionTo('people', {}, {});
     this.emit('change');
   },
 

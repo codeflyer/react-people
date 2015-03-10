@@ -569,8 +569,8 @@ var getCountryList = function() {
     }).sort();
     setTimeout(function() {
       resolve(countries);
-    }, 500);
-  })
+    }, 200);
+  });
 };
 
 module.exports = {
@@ -591,7 +591,7 @@ var loadPeopleList = function(country) {
           }
       );
       resolve(people);
-    }, 500);
+    }, 200);
   });
 };
 
@@ -606,8 +606,8 @@ var loadPersonById = function(id) {
         }
       }
       resolve(null);
-    }, 500);
-  })
+    }, 200);
+  });
 };
 
 module.exports = {

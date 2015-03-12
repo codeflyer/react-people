@@ -29,6 +29,9 @@ In this version:
 In this version:
  * Flux flow improved
 
+###Release 5 (test-test-test)
+In this version:
+ * Added some unit test to the store and to the component
 
 #Resources
 https://reactjsnews.com/the-state-of-flux/
@@ -38,6 +41,10 @@ https://github.com/enaqx/awesome-react
 
 ###Routing
 https://github.com/swipely/aviator
+
+###Testing
+https://www.npmjs.com/package/fluxxor-test-utils
+https://github.com/c9/smith/blob/master/tests/public/test.js#L2-L7 (bind polyfill)
 
 ###Others
 https://github.com/facebook/immutable-js

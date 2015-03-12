@@ -1,15 +1,10 @@
 var Router = require('react-router');
-var Fluxxor = require('fluxxor');
-
 var React = require('react');
 var Link = Router.Link;
 var State = Router.State;
+var Logo = require('./Logo');
 
 var MenuItem = React.createClass({
-  mixins: [
-    Fluxxor.FluxMixin(React),
-    State
-  ],
   render: function() {
     var className = this.props.current === this.props.to ? 'active' : '';
     return (
@@ -23,7 +18,6 @@ var MenuItem = React.createClass({
 var allowedRouteName = ['people', 'about', 'contact'];
 var Header = React.createClass({
   mixins: [
-    Fluxxor.FluxMixin(React),
     State
   ],
   render: function() {
@@ -43,7 +37,7 @@ var Header = React.createClass({
               <MenuItem name='About' to='about' current={current}></MenuItem>
               <MenuItem name='Contact' to='contact' current={current}></MenuItem>
             </ul>
-            <h3 className="text-muted">React People</h3>
+            <Logo></Logo>
           </div>
           <div className="clearfix"></div>
         </div>

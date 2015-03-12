@@ -9,6 +9,7 @@ var browserSync = require('browser-sync');
 var source = require('vinyl-source-stream');
 var buffer = require('vinyl-buffer');
 var reactify = require('reactify');
+var karma = require('gulp-karma');
 var package = require('./package.json');
 
 /**
@@ -112,5 +113,20 @@ gulp.task('serve', ['copy-assets', 'js', 'html', 'server'], function() {
 //    'lint', 'less:min', 'js:min', browserSync.reload
 //  ]);
 //});
+
+var testFiles = [
+  'test/spec/**/.js'
+];
+gulp.task('test', function() {
+  return gulp.src(testFiles)
+      .pipe(karma({
+        configFile: 'test/karma.conf.js',
+        action: 'run'
+      }))
+      .on('error', function(err) {
+        // Make sure failed tests cause gulp to exit non-zero
+        throw err;
+      });
+});
 
 gulp.task('deploy', ['clean', 'copy-assets']);

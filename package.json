@@ -13,14 +13,24 @@
     "browser-sync": "2.2.1",
     "browserify": "^9.0.3",
     "del": "^1.1.1",
+    "fluxxor-test-utils": "^0.1.1",
     "gulp": "^3.8.11",
     "gulp-jscs": "^1.4.0",
     "gulp-jshint": "^1.9.2",
     "gulp-jsxcs": "^0.1.8",
+    "gulp-karma": "0.0.4",
     "gulp-run": "^1.6.6",
+    "jasmine-core": "^2.2.0",
     "jscs": "^1.11.3",
     "jsxcs": "^0.2.1",
+    "karma": "^0.12.31",
+    "karma-browserify": "^4.0.0",
+    "karma-jasmine": "^0.3.5",
+    "karma-phantomjs-launcher": "^0.1.4",
+    "karma-spec-reporter": "0.0.16",
+    "react-tools": "^0.13.0",
     "reactify": "^1.0.0",
+    "rewireify": "0.0.13",
     "vinyl-buffer": "^1.0.0",
     "vinyl-source-buffer": "0.0.2",
     "vinyl-source-stream": "^1.1.0"
@@ -40,6 +50,7 @@
     "fluxxor": "^1.5.2",
     "immutable": "^3.6.4",
     "react": "^0.12.2",
-    "react-router": "^0.12.4"
+    "react-router": "^0.12.4",
+    "rewire": "^2.3.1"
   }
 }

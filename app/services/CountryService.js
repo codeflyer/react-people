@@ -12,7 +12,7 @@ var getCountryList = function() {
     }).sort();
     setTimeout(function() {
       resolve(countries);
-    }, 200);
+    }, 1000);
   });
 };
 

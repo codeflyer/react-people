@@ -25,6 +25,10 @@ In this version:
 In this version:
  * Added a correct use of the router
 
+###Release 4 (flux-better)
+In this version:
+ * Flux flow improved
+
 
 #Resources
 https://reactjsnews.com/the-state-of-flux/

@@ -9,12 +9,8 @@ var Link = Router.Link;
 var PeopleListItem = React.createClass({
   mixins: [
     Fluxxor.FluxMixin(React),
-    Fluxxor.StoreWatchMixin('people'),
     State
   ],
-  getStateFromFlux: function() {
-    return {};
-  },
   render: function() {
     return (
         <tr key={'res-' + this.props.person.id}>
@@ -34,13 +30,12 @@ var PeopleListItem = React.createClass({
 var PeopleList = React.createClass({
   mixins: [
     Fluxxor.FluxMixin(React),
-    Fluxxor.StoreWatchMixin('people'),
+    Fluxxor.StoreWatchMixin('country', 'people'),
     State
   ],
   getStateFromFlux: function() {
-    var currentCountry = this.getFlux().store('people').getCurrentCountry();
     return {
-      currentCountry: currentCountry,
+      currentCountry: this.getFlux().store('country').getCurrentCountry(),
       people: this.getFlux().store('people').getCurrentPeopleList()
     };
   },

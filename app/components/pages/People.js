@@ -11,13 +11,8 @@ var CountrySelector = require('./../widgets/CountrySelector');
 var People = React.createClass({
   mixins: [
     Fluxxor.FluxMixin(React),
-    Fluxxor.StoreWatchMixin('people'),
     State
   ],
-
-  getStateFromFlux: function() {
-    return {};
-  },
   render: function() {
     return (
         <div className="container">

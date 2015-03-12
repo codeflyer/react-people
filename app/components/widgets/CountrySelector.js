@@ -6,16 +6,16 @@ var Fluxxor = require('fluxxor');
 var CountrySelectorItem = React.createClass({
   mixins: [
     Fluxxor.FluxMixin(React),
-    Fluxxor.StoreWatchMixin('people'),
+    Fluxxor.StoreWatchMixin('country'),
     State
   ],
   getStateFromFlux: function() {
     return {
-      currentCountry: this.getFlux().store('people').getCurrentCountry()
+      currentCountry: this.getFlux().store('country').getCurrentCountry()
     };
   },
   handleChangeCountry: function() {
-    this.getFlux().actions.people.changeCountry(this.props.country);
+    this.getFlux().actions.country.changeCountry(this.props.country);
   },
   render: function() {
     var className = 'list-group-item';
@@ -29,12 +29,15 @@ var CountrySelectorItem = React.createClass({
 var CountrySelector = React.createClass({
   mixins: [
     Fluxxor.FluxMixin(React),
-    Fluxxor.StoreWatchMixin('people'),
+    Fluxxor.StoreWatchMixin('country'),
     State
   ],
+  componentWillMount : function() {
+    this.getFlux().actions.country.initCountries();
+  },
   getStateFromFlux: function() {
     return {
-      countries: this.getFlux().store('people').getCountries()
+      countries: this.getFlux().store('country').getCountries()
     };
   },
   render: function() {

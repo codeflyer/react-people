@@ -1,83 +1,49 @@
 var Fluxxor = require('fluxxor');
 var actions = require('../actions');
-var CountryService = require('../services/CountryService');
-var PeopleService = require('../services/PeopleService');
-var NOT_FOUND_TOKEN = {};
 
 var PeopleStore = Fluxxor.createStore({
   initialize: function() {
-    this.currentCountry = null;
     this.currentPerson = null;
-    this.countries = null;
     this.people = null;
-    this._initCountryList();
     this.bindActions(
-        actions.constants.PEOPLE.CHANGE_COUNTRY, this.handleChangeCountry
+        actions.constants.PEOPLE.LOAD_PEOPLE_LIST, this.handleLoadPeopleList,
+        actions.constants.PEOPLE.LOAD_PEOPLE_LIST_SUCCESS, this.handleLoadPeopleListSuccess,
+        actions.constants.PEOPLE.LOAD_PEOPLE_LIST_FAIL, this.handleLoadPeopleListFail,
+        actions.constants.PEOPLE.LOAD_PERSON, this.handleChangePerson,
+        actions.constants.PEOPLE.LOAD_PERSON_SUCCESS, this.handleChangePersonSuccess,
+        actions.constants.PEOPLE.LOAD_PERSON_FAIL, this.handleChangePersonFail
     );
   },
-
-  getCountries: function() {
-    return this.countries;
-  },
-
-  getCurrentCountry: function() {
-    return this.currentCountry;
-  },
-
   getCurrentPeopleList: function() {
     return this.people;
   },
-
   getCurrentPerson: function() {
     return this.currentPerson;
   },
-
-  _changePerson: function(id) {
+  handleChangePerson: function(payload) {
     this.currentPerson = null;
-    var that = this;
-    PeopleService.loadPersonById(id).then(
-        function(person) {
-          that.currentPerson = person;
-          that.emit('change');
-        }
-    );
-  },
-
-  _changeCountry: function(country) {
-    this.currentCountry = country;
     this.people = null;
-    var that = this;
-    PeopleService.loadPeopleList(country).then(
-        function(people) {
-          that.people = people;
-          that.emit('change');
-        }
-    );
+    this.emit('change');
   },
-
-  _initCountryList: function() {
-    var that = this;
-    CountryService.getCountryList().then(
-        function(countries) {
-          that.countries = countries;
-          that._changeCountry(that.countries[0]);
-          that.emit('change');
-        }
-    );
+  handleChangePersonSuccess: function(payload) {
+    this.currentPerson = payload.person;
+    this.emit('change');
   },
-
-  handleChangeCountry: function(data) {
-    this._changeCountry(data.country);
+  handleChangePersonFail: function(payload) {
+    this.emit('change');
+  },
+  handleLoadPeopleList: function(data) {
+    this.people = null;
     this.flux.store('route').router.transitionTo('people', {}, {});
     this.emit('change');
   },
-
-  handleChangePerson: function(idPerson) {
-    this._changePerson(idPerson);
+  handleLoadPeopleListSuccess: function(payload) {
+    this.people = payload.people;
+    this.emit('change');
+  },
+  handleLoadPeopleListFail: function(data) {
     //this.emit('change');
   }
 });
-
-PeopleStore.NOT_FOUND_TOKEN = NOT_FOUND_TOKEN;
 
 module.exports = PeopleStore;

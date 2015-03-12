@@ -6,12 +6,14 @@ var routes = require('./routes');
 var actions = require('./actions');
 
 var PeopleStore = require('./stores/PeopleStore');
+var CountryStore = require('./stores/CountryStore');
 var RouteStore = require('./stores/RouteStore');
 
 var router = Router.create({routes: routes});
 
 var stores = {
   people : new PeopleStore(),
+  country : new CountryStore(),
   route: new RouteStore({router: router})
 };
 
